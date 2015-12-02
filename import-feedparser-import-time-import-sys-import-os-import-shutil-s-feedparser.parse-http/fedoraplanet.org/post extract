@@ -1,0 +1,32 @@
+
+import feedparser
+import time
+import sys
+import os
+import shutil
+
+s= feedparser.parse('http://fedoraplanet.org/atom.xml')
+
+
+# print all posts
+
+count = 1
+count1=count
+blockcount = 1
+for post in s.entries:
+    if count % 5 == 1:
+        e="\n"+"Post dated on:"+post.updated + "\n" + "-----------------------------------------\n"
+        blockcount += 1
+    #print (e,"Blog Title:",post.title + "\n")
+    #print ("Author:",post.author + "\n")
+    #print ("Content of Post:","\n",post.content,"\n")
+    #print ("Link Post:","\n",post.link + "\n")
+    file = open("newfile.txt", "a")
+    file.write(e)
+    file.write("Blog Title:"+post.title+'\n''\n')
+    file.write("Author:"+str(post.author)+'\n''\n')
+    file.write("Content of Post:"+'\n'+str(post.content)+'\n''\n')
+    file.write("Link Post:"+'\n'+str(post.link)+'\n')
+    #file.write("Link Post:"+'\n'+str(post.)+'\n')
+    
+    count += 1
